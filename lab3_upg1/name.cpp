@@ -1,13 +1,14 @@
 #include "name.h"
 using namespace std;
 
-// Konstruktorer
+// Standardkonstruktor
 Name::Name()
 {
     firstName = "";
     lastName = "";
 }
 
+// Överlagrad konstruktor
 Name::Name(string fn, string ln)
 {
     firstName = fn;
@@ -25,6 +26,7 @@ void Name::setLastName(string ln)
     lastName = ln;
 }
 
+// Överlagring av < operatorn
 bool Name::operator<(const Name &name) const
 {
     bool eq = false;
@@ -41,7 +43,8 @@ bool Name::operator<(const Name &name) const
     return eq;
 }
 
-bool Name::operator ==(const Name &name) const
+// Överlagring av == operatorn
+bool Name::operator==(const Name &name) const
 {
     bool eq = false;
 
@@ -55,4 +58,29 @@ bool Name::operator ==(const Name &name) const
     }
 
     return eq;
+}
+
+// Avgränsare i fil
+const char DELIM='|';
+
+//Överlagring av << utskriftsoperatorn
+ostream &operator<<(ostream &os, const Name &n)
+{
+    os << n.getFirstName() << n.getLastName();
+
+    return os;
+}
+
+// Överlagring av >> inläsningsoperatorn
+istream &operator>>(istream &is, Name &n)
+{
+    string s;
+
+    getline(is, s, DELIM);
+    n.setFirstName(s);
+
+    getline(is, s, DELIM);
+    n.setLastName(s);
+
+    return is;
 }

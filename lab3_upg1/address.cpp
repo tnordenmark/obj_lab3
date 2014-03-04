@@ -1,7 +1,8 @@
 #include "address.h"
+#include <iostream>
 using namespace std;
 
-// Konstruktorer
+// Standardkonstruktor
 Address::Address()
 {
     street = "";
@@ -9,6 +10,7 @@ Address::Address()
     city = "";
 }
 
+// Överlagrad konstruktor
 Address::Address(string s, string p, string c)
 {
     street = s;
@@ -33,7 +35,7 @@ void Address::setCity(string c)
 }
 
 // Överlagring av < operatorn
-bool Address::operator <(const Address &a) const
+bool Address::operator<(const Address &a) const
 {
     bool eq = false;
 
@@ -50,7 +52,36 @@ bool Address::operator <(const Address &a) const
 }
 
 // Överlagring av == operatorn
-bool Address::operator ==(const Address &a) const
+bool Address::operator==(const Address &a) const
 {
     return city == a.getCity();
+}
+
+// Avgränsare i fil
+const char DELIM='|';
+
+//Överlagring av << utskriftsoperatorn
+ostream &operator<<(ostream &os, const Address &a)
+{
+    os << a.getStreet();
+    os << a.getPostalNo() << a.getCity();
+
+    return os;
+}
+
+// Överlagring av >> inläsningsoperatorn
+istream &operator>>(istream &is, Address &a)
+{
+    string s;
+
+    getline(is, s, DELIM);
+    a.setStreet(s);
+
+    getline(is, s, DELIM);
+    a.setPostalNo(s);
+
+    getline(is, s, DELIM);
+    a.setCity(s);
+
+    return is;
 }

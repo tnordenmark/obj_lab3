@@ -27,8 +27,12 @@ class Address
         std::string getCity()const {return city;}
 
         // Överlagrade operatorer
-        bool operator <(const Address &a) const;
-        bool operator ==(const Address &a) const;
+        bool operator<(const Address &a) const;
+        bool operator==(const Address &a) const;
 };
+
+// Överlagring av operatorer för inläsning och utskrift
+std::ostream &operator<<(std::ostream &os, const Address &a);
+std::istream &operator>>(std::istream &is, Address &a);
 
 #endif // ADDRESS_H

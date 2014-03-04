@@ -8,7 +8,9 @@ using namespace std;
 
 int main()
 {
+    // Skapa ett userinterface-objekt
     UserInterface ui;
+    // Kör huvudfunktionen på objektet
     ui.run();
 
     return 0;

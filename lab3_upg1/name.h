@@ -24,8 +24,12 @@ class Name
         std::string getLastName() const {return lastName;}
 
         // Överlagring av operatorer
-        bool operator <(const Name &name) const;
-        bool operator ==(const Name &name) const;
+        bool operator<(const Name &name) const;
+        bool operator==(const Name &name) const;
 };
+
+// Överlagring av operatorer för utskrift och inläsning
+std::ostream &operator<<(std::ostream &os, const Name &n);
+std::istream &operator>>(std::istream &is, Name &n);
 
 #endif // NAME_H

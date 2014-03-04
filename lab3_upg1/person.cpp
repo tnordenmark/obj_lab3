@@ -1,13 +1,16 @@
 #include <iostream>
+#include <sstream>
 #include "person.h"
 using namespace std;
 
+// Standardkonstruktor
 Person::Person()
 {
     persNr = "";
     skoNr = 0;
 }
 
+// Överlagrad konstruktor
 Person::Person(Name n, Address a, std::string p, int s)
 {
     name = n;
@@ -61,10 +64,10 @@ bool Person::operator ==(const Person &p) const
 }
 
 // Avgränsare för utskrift till fil
-const char DELIM = '|';
+const char DELIM='|';
 
-// Överlagring av utskriftsoperatorn
-std::ostream &operator<<(std::ostream &os, const Person &p)
+// Överlagring av << utskriftsoperatorn
+std::ostream &operator<<(ostream &os, const Person &p)
 {
     os << p.getName().getFirstName() << DELIM << p.getName().getLastName() << DELIM;
     os << p.getAddress().getStreet() << DELIM << p.getAddress().getPostalNo() << DELIM;
@@ -73,39 +76,29 @@ std::ostream &operator<<(std::ostream &os, const Person &p)
     return os;
 }
 
-// Överlagring av inmatningsoperatorn
-std::istream &operator>>(std::istream &is, Person &p)
+// Överlagring av >> inmatningsoperatorn
+std::istream &operator>>(istream &is, Person &p)
 {
     Name n;
     Address a;
     string s;
 
-    getline(is, s, DELIM);
-    n.setFirstName(s);
-
-    getline(is, s, DELIM);
-    n.setLastName(s);
+    is >> n;
     p.setName(n);
 
-    getline(is, s, DELIM);
-    a.setStreet(s);
-
-    getline(is, s, DELIM);
-    a.setPostalNo(s);
-
-    getline(is, s, DELIM);
-    a.setCity(s);
+    is >> a;
     p.setAddress(a);
 
     getline(is, s, DELIM);
     p.setPersNr(s);
 
-    int x;
-    is >> x;
-    is.get();
-    p.setSkoNr(x);
+    // Strängström för att kunna använda getline på en int och sen
+    // omvandla strängen till en integer
+    getline(is, s);
+    int skonr = 0;
+    stringstream skostream(s);
+    skostream >> skonr;
+    p.setSkoNr(skonr);
 
     return is;
 }
-
-

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <limits>
 #include <string>
+#include <sstream>
 #include "userinterface.h"
 #include "func.h"
 #include "personlist.h"
@@ -70,41 +71,48 @@ void UserInterface::addPerson(PersonList &plist)
     Address a;
 
     // Variabler för inmatad data
-    string fname, lname, street, postalno, city, persnr;
-    int skonr = 0;
+    string fname, lname, street, postalno, city, persnr, skonrstr;
+
+    // Läs bort huvudmenyns newline
+    cin.get();
 
     // Fråga efter, mata in och tilldela data till rätt objekts attribut
     cout << "Förnamn: ";
-    cin >> fname;
+    getline(cin, fname);
     n.setFirstName(fname);
 
     cout << "Efternamn: ";
-    cin >> lname;
+    getline(cin, lname);
     n.setLastName(lname);
 
-    // Läs bort skit i tuben
-    cin.get();
     cout << "Gatuadress: ";
     getline(cin, street);
     a.setStreet(street);
 
     cout << "Postnr: ";
-    cin >> postalno;
+    getline(cin, postalno);
     a.setPostalNo(postalno);
 
     cout << "Stad: ";
-    cin >> city;
+    getline(cin, city);
     a.setCity(city);
 
+    // Sätt Person-objektets "vanliga" variabler persNr och skoNr till rätt inmatad data
     cout << "Personnr: ";
-    cin >> persnr;
+    getline(cin, persnr);
     p.setPersNr(persnr);
 
+    // Eftersom det är lite vanskligt att blanda cin >> och getline använder jag
+    // getline till en temporär skonrsträng och omvandlar sen till int innan den
+    // sparas i Person-objektet
     cout << "Skonr: ";
-    cin >> skonr;
+    getline(cin, skonrstr);
+    int skonr = 0;
+    stringstream skostream(skonrstr);
+    skostream >> skonr;
     p.setSkoNr(skonr);
 
-    // Sätt Person-objektets "vanliga" variabler till rätt inmatad data
+    // Tilldela objekten Name och Address i klassen Person sina objekt
     p.setName(n);
     p.setAddress(a);
 
@@ -171,19 +179,19 @@ int UserInterface::run()
 {
     PersonList plist;
 
-    // Skapa 4 testpersoner
-        Person p1(Name("Arne", "Andersson"), Address("Storgatan 4", "83146", "Östersund"), "810512-8417", 44);
-        Person p2(Name("Caesar", "Caligula"), Address("Kejsargatan 10", "55567", "Rom"), "141212-8415", 36);
-        Person p3(Name("Daniel", "Dragan"), Address("Storgatan 10", "83146", "Östersund"), "651012-8245", 39);
-        Person p4(Name("Beata", "Bertilsson"), Address("Esplanaden 5", "83132", "Östersund"), "610721-8216", 38);
-        Person p5(Name("Bo", "Caligula"), Address("Torget 10", "531 42", "Landvetter"), "610721-8216", 38);
+    // Skapa testpersoner
+    Person p1(Name("Arne", "Andersson"), Address("Storgatan 4", "83146", "Östersund"), "810512-8417", 44);
+    Person p2(Name("Caesar", "Caligula"), Address("Kejsargatan 10", "55567", "Rom"), "141212-8415", 36);
+    Person p3(Name("Daniel", "Dragan"), Address("Storgatan 10", "83146", "Östersund"), "651012-8245", 39);
+    Person p4(Name("Beata", "Bertilsson"), Address("Esplanaden 5", "83132", "Östersund"), "610721-8216", 38);
+    Person p5(Name("Bo", "Caligula"), Address("Torget 10", "531 42", "Landvetter"), "610721-8216", 38);
 
-        // Lägg till 4 testpersoner
-        plist.addPerson(p1);
-        plist.addPerson(p2);
-        plist.addPerson(p3);
-        plist.addPerson(p4);
-        plist.addPerson(p5);
+    // Lägg till testpersoner
+    plist.addPerson(p1);
+    plist.addPerson(p2);
+    plist.addPerson(p3);
+    plist.addPerson(p4);
+    plist.addPerson(p5);
 
     // Lagra menyvalet
     int menu_choice;

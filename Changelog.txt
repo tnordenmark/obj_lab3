@@ -1,0 +1,3 @@
+Har lagt till överlagrade operatorer för utskrift och inläsning i klasserna Name och Address samt
+modifierat motsvarande operatorer i klassen Person för att använda dessa och spara kod. Det ska
+även gå bra att skriva in allt utom skonummer med mellanslag.

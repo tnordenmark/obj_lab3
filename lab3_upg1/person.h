@@ -36,7 +36,7 @@ class Person
         bool operator ==(const Person &p) const;
 };
 
-// Överlagrade operatorer
+// Överlagring av operatorer för utskrift och inläsning
 std::ostream &operator<<(std::ostream &os, const Person &p);
 std::istream &operator>>(std::istream &is, Person &p);
 

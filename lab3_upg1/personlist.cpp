@@ -3,28 +3,33 @@
 #include "personlist.h"
 using namespace std;
 
+// Standardkonstruktor
 PersonList::PersonList()
 {
     fileName = "";
 }
 
+// Överlagrad konstruktor
 PersonList::PersonList(vector<Person> v, string f)
 {
     pvec = v;
     fileName = f;
 }
 
+// Setter för filnamn
 void PersonList::setFileName(string f)
 {
     fileName = f;
 }
 
+// Lägg till person i listan
 void PersonList::addPerson(Person &p)
 {
     // Lägg hela personobjektet i vectorn
     pvec.push_back(p);
 }
 
+// Getter för person
 Person PersonList::getPerson(int idx)
 {
     Person p = pvec[idx];
@@ -32,28 +37,33 @@ Person PersonList::getPerson(int idx)
     return p;
 }
 
+// Antal personer i listan (storlek på vectorn)
 int PersonList::nrOfPersons()const
 {
     return pvec.size();
 }
 
+// Sortera på namn, efternamn först
 void PersonList::sortName()
 {
     sort(pvec.begin(), pvec.end(), sortFnLn);
 }
 
+// Sortera på personnr
 void PersonList::sortPersnr()
 {
     sort(pvec.begin(), pvec.end(), sortPnr);
 
 }
 
+// Sortera på skonr
 void PersonList::sortShoenr()
 {
     sort(pvec.begin(), pvec.end(), sortSnr);
 
 }
 
+// Läs lista från fil
 void PersonList::readFromFile()
 {
     fstream inFile(fileName, ios::in);
@@ -68,6 +78,7 @@ void PersonList::readFromFile()
     inFile.close();
 }
 
+// Skriv lista till fil
 void PersonList::writeToFile()
 {
     // Öppna filen för skrivning
@@ -91,6 +102,7 @@ void PersonList::writeToFile()
 
 }
 
+// Skriv ut listan till skärm
 void PersonList::printList()
 {
     // Skriv ut hela listan i pvec
@@ -101,4 +113,3 @@ void PersonList::printList()
         cout << endl;
     }
 }
-
