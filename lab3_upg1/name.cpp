@@ -1,3 +1,4 @@
+#include <iostream>
 #include "name.h"
 using namespace std;
 
@@ -66,7 +67,7 @@ const char DELIM='|';
 //Överlagring av << utskriftsoperatorn
 ostream &operator<<(ostream &os, const Name &n)
 {
-    os << n.getFirstName() << n.getLastName();
+    os << n.getFirstName() << DELIM << n.getLastName() << DELIM;
 
     return os;
 }

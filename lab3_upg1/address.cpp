@@ -63,8 +63,7 @@ const char DELIM='|';
 //Överlagring av << utskriftsoperatorn
 ostream &operator<<(ostream &os, const Address &a)
 {
-    os << a.getStreet();
-    os << a.getPostalNo() << a.getCity();
+    os << a.getStreet() << DELIM << a.getPostalNo() << DELIM << a.getCity() << DELIM;
 
     return os;
 }

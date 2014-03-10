@@ -69,9 +69,7 @@ const char DELIM='|';
 // Överlagring av << utskriftsoperatorn
 std::ostream &operator<<(ostream &os, const Person &p)
 {
-    os << p.getName().getFirstName() << DELIM << p.getName().getLastName() << DELIM;
-    os << p.getAddress().getStreet() << DELIM << p.getAddress().getPostalNo() << DELIM;
-    os << p.getAddress().getCity() << DELIM << p.getPersNr()<< DELIM << p.getSkoNr();
+    os << p.getName() << p.getAddress() << p.getPersNr() << p.getSkoNr();
 
     return os;
 }
