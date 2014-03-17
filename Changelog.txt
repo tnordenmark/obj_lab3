@@ -1,3 +1,2 @@
-Har modifierat de överlagrade operatorererna för utskrift klasserna Name, Address och Person
-och lagt till DELIM för korrekt formatering.
-Utskriftsoperatorn i klassen Person ska nu använda dessa för utskrift så långt jag kan förstå.
+Lagt till en DELIM i std::ostream &operator<<(ostream &os, const Person &p) i klassen Person (Person.cpp).
+Efter månget slarvfel är programmet nu korrekt vad jag kan se efter testkörningar.

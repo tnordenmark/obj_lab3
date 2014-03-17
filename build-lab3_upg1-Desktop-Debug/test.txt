@@ -1,5 +1,0 @@
-Arne|Andersson|Storgatan 4|83146|Östersund|810512-841744
-Caesar|Caligula|Kejsargatan 10|55567|Rom|141212-841536
-Daniel|Dragan|Storgatan 10|83146|Östersund|651012-824539
-Beata|Bertilsson|Esplanaden 5|83132|Östersund|610721-821638
-Bo|Caligula|Torget 10|531 42|Landvetter|610721-821638
